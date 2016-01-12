@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109071424) do
+ActiveRecord::Schema.define(version: 20160112070037) do
 
   create_table "spree_activators", force: true do |t|
     t.string   "description"
@@ -109,6 +109,22 @@ ActiveRecord::Schema.define(version: 20160109071424) do
     t.datetime "updated_at"
   end
 
+  create_table "spree_banner_boxes", force: true do |t|
+    t.string   "alt_text"
+    t.string   "url"
+    t.string   "category"
+    t.integer  "position"
+    t.boolean  "enabled",                 default: false
+    t.string   "attachment_content_type"
+    t.string   "attachment_file_name"
+    t.datetime "attachment_updated_at"
+    t.integer  "attachment_width"
+    t.integer  "attachment_height"
+    t.integer  "attachment_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "spree_business_types", force: true do |t|
     t.string   "business_type"
     t.string   "description"
@@ -123,6 +139,28 @@ ActiveRecord::Schema.define(version: 20160109071424) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "spree_comment_types", force: true do |t|
+    t.string   "name"
+    t.string   "applies_to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "spree_comments", force: true do |t|
+    t.string   "title",            limit: 50
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "comment_type_id"
+  end
+
+  add_index "spree_comments", ["commentable_id"], name: "index_spree_comments_on_commentable_id"
+  add_index "spree_comments", ["commentable_type"], name: "index_spree_comments_on_commentable_type"
+  add_index "spree_comments", ["user_id"], name: "index_spree_comments_on_user_id"
 
   create_table "spree_configurations", force: true do |t|
     t.string   "name"

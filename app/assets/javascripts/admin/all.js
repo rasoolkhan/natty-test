@@ -11,3 +11,4 @@
 
 //= require_tree .
 //= require admin/spree_drop_ship
+//= require admin/spree_banner
