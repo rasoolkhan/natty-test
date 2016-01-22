@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112070037) do
+ActiveRecord::Schema.define(version: 20160122062946) do
 
   create_table "spree_activators", force: true do |t|
     t.string   "description"
@@ -194,6 +194,30 @@ ActiveRecord::Schema.define(version: 20160112070037) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "spree_digital_links", force: true do |t|
+    t.integer  "digital_id"
+    t.integer  "line_item_id"
+    t.string   "secret"
+    t.integer  "access_counter"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spree_digital_links", ["digital_id"], name: "index_spree_digital_links_on_digital_id"
+  add_index "spree_digital_links", ["line_item_id"], name: "index_spree_digital_links_on_line_item_id"
+  add_index "spree_digital_links", ["secret"], name: "index_spree_digital_links_on_secret"
+
+  create_table "spree_digitals", force: true do |t|
+    t.integer  "variant_id"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spree_digitals", ["variant_id"], name: "index_spree_digitals_on_variant_id"
 
   create_table "spree_drop_ship_line_items", force: true do |t|
     t.integer  "drop_ship_order_id"
@@ -439,7 +463,7 @@ ActiveRecord::Schema.define(version: 20160112070037) do
   add_index "spree_product_properties", ["product_id"], name: "index_product_properties_on_product_id"
 
   create_table "spree_products", force: true do |t|
-    t.string   "name",                 default: "",    null: false
+    t.string   "name",                                         default: "",    null: false
     t.text     "description"
     t.datetime "available_on"
     t.datetime "deleted_at"
@@ -452,11 +476,13 @@ ActiveRecord::Schema.define(version: 20160112070037) do
     t.datetime "updated_at"
     t.integer  "supplier_id"
     t.integer  "user_id"
-    t.boolean  "sell_stop",            default: false
+    t.boolean  "sell_stop",                                    default: false
     t.datetime "sell_finish_at"
     t.integer  "seller_id"
     t.integer  "created_by"
     t.integer  "updated_by"
+    t.decimal  "avg_rating",           precision: 7, scale: 5, default: 0.0,   null: false
+    t.integer  "reviews_count",                                default: 0,     null: false
   end
 
   add_index "spree_products", ["available_on"], name: "index_spree_products_on_available_on"
@@ -556,6 +582,18 @@ ActiveRecord::Schema.define(version: 20160112070037) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "stock_location_id"
+  end
+
+  create_table "spree_reviews", force: true do |t|
+    t.string   "name"
+    t.string   "location"
+    t.decimal  "rating"
+    t.text     "review"
+    t.boolean  "approved",   default: false
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "spree_roles", force: true do |t|

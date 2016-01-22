@@ -52,3 +52,5 @@ gem 'spree_static_content', github: 'spree-contrib/spree_static_content', branch
 gem 'spree_social', github: 'spree-contrib/spree_social', branch: '2-1-stable'
 gem 'spree_product_preview', github: 'freego/spree_product_preview', branch: '2-1-stable'
 gem 'spree_banner', '~> 2.0.0', github: 'dbwinger/spree_banner'
+gem 'spree_digital', github: 'halo/spree_digital', branch: '2-1-stable'
+gem 'spree_pay_u', github: 'https://github.com/rasoolkhan/spree_pay_u', branch: '2-1-stable'
