@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.12'
+gem 'rails', '~> 4.1.2'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -44,7 +44,7 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'spree', git: 'https://github.com/spree/spree.git', branch: '2-1-stable'
+gem 'spree', :github => 'spree/spree', :branch => '2-3-stable'
 gem 'spree_gateway', github: 'spree/spree_gateway', branch: '2-1-stable'
 gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: '2-1-stable'
 gem 'spree_drop_ship', github: 'spree-contrib/spree_drop_ship',  branch: '2-1-stable'
@@ -53,4 +53,3 @@ gem 'spree_social', github: 'spree-contrib/spree_social', branch: '2-1-stable'
 gem 'spree_product_preview', github: 'freego/spree_product_preview', branch: '2-1-stable'
 gem 'spree_banner', '~> 2.0.0', github: 'dbwinger/spree_banner'
 gem 'spree_digital', github: 'halo/spree_digital', branch: '2-1-stable'
-gem 'spree_pay_u', github: 'https://github.com/rasoolkhan/spree_pay_u', branch: '2-1-stable'
